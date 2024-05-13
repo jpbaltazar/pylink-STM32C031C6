@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "southbridge-jlink"
+version = "0.1.0"
+description = ""
+authors = ["José Mendes <jose.mendes@hardwario.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pylink-square = "^1.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
