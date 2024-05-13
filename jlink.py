@@ -41,7 +41,7 @@ def setNBootSel():
     # Check if the flash is locked
     status = jlink.memory_read32(FLASH_CR, 1)[0]
     if status & 0xC0000000:
-        print('Flash is locked')
+        print('Flash/OB are locked')
     
         # Unlock the flash
         jlink.memory_write32(FLASH_KEY, [KEY_1])
@@ -74,7 +74,7 @@ def setNBootSel():
     time.sleep(0.1)
     openJLink(jlink)
 
-    # Lock the flash again
+    # Lock the flash and OB again
     jlink.memory_write32(FLASH_CR, [0xC0000000])
     time.sleep(0.1)
 
@@ -89,7 +89,7 @@ def checkNBootSel():
     jlink.reset(halt=True)
 
     # Read the value from the specified address
-    value = jlink.memory_read32(0x40022020, 1)[0]
+    value = jlink.memory_read32(FLASH_OPTR, 1)[0]
     print('NBootSel value: 0x%08X' % value)
 
     jlink.reset(halt=False)
